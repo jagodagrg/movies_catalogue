@@ -17,10 +17,8 @@ def import_data():
 
 @ app.route('/')
 def homepage():
-    movies = []
     all_movies = import_data()['results']
-    for i in range(8):
-        movies.append(all_movies[i])
+    movies = all_movies[:8]
     return render_template("homepage.html", movies=movies)
 
 
