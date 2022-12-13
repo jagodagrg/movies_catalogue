@@ -30,13 +30,6 @@ def get_poster_url(poster_api_path, size="w342"):
     base_url = "https://image.tmdb.org/t/p/"
     return f"{base_url}{size}/{poster_api_path}"
 
-# ta funkcja jest do zrobienia w zadaniu, ale potem jest już zbędna moim zdaniem
-# def get_movie_info():
-#    movies = get_movies()['results']
-#    for movie in movies:
-#        movie_info[movie['title']] = movie['poster_path']
-#    return movie_info
-
 
 def get_movies(how_many, list_type='popular'):
     if list_type == 'trending_today':
