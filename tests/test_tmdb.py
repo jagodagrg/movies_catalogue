@@ -53,6 +53,7 @@ def test_homepage(monkeypatch, list_type):
                     'movie1', 'movie2', 'movie3', 'movie4', 'movie5', 'movie6', 'movie7', 'movie8', 'movie9', 'movie10']})
     monkeypatch.setattr("tmdb_client.call_tmdb_api", api_mock)
 
-    with app.test_client(list_type) as client:
-        response = client.get('/')
-        assert response.status_code == 200
+        with app.test_client() as client:
+            response = client.get(list_type)
+            assert response.status_code == 200
+            api_mock.assert_called_once_with(list_type)
