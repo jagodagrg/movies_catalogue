@@ -40,20 +40,21 @@ def test_get_single_movie_cast(monkeypatch):
     assert movie_cast == ["actor1", "actor2", "actor3"]
 
 
-@pytest.mark.parametrize('list_type', (
-    'movie/popular',
-    'movie/now_playing',
-    'movie/top_rated',
-    'movie/upcoming',
-    'trending/movie/day',
-    'trending/movie/week'
+@pytest.mark.parametrize('list_type, list_name', (
+    ('movie/popular', 'popular'),
+    ('movie/now_playing', 'now_playing'),
+    ('movie/top_rated', 'top_rated'),
+    ('movie/upcoming', 'upcoming'),
+    ('trending/movie/day', 'trending_today'),
+    ('trending/movie/week', 'trending_this_week')
 ))
-def test_homepage(monkeypatch, list_type):
+def test_homepage(monkeypatch, list_type, list_name):
     api_mock = Mock(return_value={'results': [
                     'movie1', 'movie2', 'movie3', 'movie4', 'movie5', 'movie6', 'movie7', 'movie8', 'movie9', 'movie10']})
     monkeypatch.setattr("tmdb_client.call_tmdb_api", api_mock)
 
-        with app.test_client() as client:
-            response = client.get(list_type)
-            assert response.status_code == 200
-            api_mock.assert_called_once_with(list_type)
+    with app.test_client() as client:
+        response = client.get(
+            '/', query_string={'list_type': list_name})
+        assert response.status_code == 200
+        api_mock.assert_called_once_with(list_type)
