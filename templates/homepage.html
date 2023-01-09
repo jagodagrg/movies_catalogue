@@ -4,8 +4,8 @@
 
 <div class="row">
    <div class="col-lg-12 text-center">
-       <h1 class="mt-5">Witaj w mojej bibliotece filmów</h1>
-       <p class="lead">Znajdziesz tutaj tylko najlepsze tytuły!</p>
+       <h1 class="mt-5">Welcome to my movie library</h1>
+       <p class="lead">Check out the most popular movies!</p>
    </div>
    <div class="col-lg-12 mb-4">
     {% for list_type in list_types %}
@@ -20,7 +20,7 @@
                <h4 class="card-title">{{ movie.title }}</h4>
            </div>
            <div class="card-footer text-center">
-                <a class="btn btn-primary" href="{{ url_for('movie_details', movie_id=movie.id) }}">Pokaż więcej</a>
+                <a class="btn btn-primary" href="{{ url_for('movie_details', movie_id=movie.id) }}">Show more</a>
            </div>
        </div>
    </div>
